@@ -12,7 +12,7 @@ cd ..
 done
 
 # Single busco and quast entries to test before loop
-# /home/ubuntu/.local/bin/busco -i a-thal-out-k15.scafSeq -l embryophyta_odb10 -o busco-k15 -m genome
-# python3 /home/ubuntu/quast/quast.py -o quast-k15 -e -k --k-mer-size 15 a-thal-out-k15.scafSeq
+/home/ubuntu/.local/bin/busco -i a-thal-out-k15.scafSeq -l embryophyta_odb10 -o busco-k15 -m genome
+python3 /home/ubuntu/quast/quast.py -o quast-k15 -e -k --k-mer-size 15 a-thal-out-k15.scafSeq
 
 

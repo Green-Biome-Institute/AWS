@@ -1,6 +1,4 @@
-# example configuration file that I have used
-# The masurca assembler comes with an example configuration file like the one below, I only changed the type of input data (illumina and pacbio in this case) 
-# and the number of threads  used on the ec2 instance I was using.
+# example configuration file 
 
 # DATA is specified as type {PE,JUMP,OTHER,PACBIO} and 5 fields:
 # 1)two_letter_prefix 2)mean 3)stdev 4)fastq(.gz)_fwd_reads
@@ -16,7 +14,7 @@ DATA
 #Illumina paired end reads supplied as <two-character prefix> <fragment mean> <fragment stdev> <forward_reads> <reverse_reads>
 #if single-end, do not specify <reverse_reads>
 #MUST HAVE Illumina paired end reads to use MaSuRCA
-PE= pe 500 100  /home/ubuntu/athal-data/short-read/SRR1946554_1.fastq.gz  /home/ubuntu/athal-data/short-read/SRR1946554_2.fastq.gz
+PE= pe 150 50  /home/ubuntu/athal-data/short-read/SRR1946554_1.fastq.gz  /home/ubuntu/athal-data/short-read/SRR1946554_2.fastq.gz
 #Illumina mate pair reads supplied as <two-character prefix> <fragment mean> <fragment stdev> <forward_reads> <reverse_reads>
 #JUMP= sh 3600 200  /FULL_PATH/short_1.fastq  /FULL_PATH/short_2.fastq
 #pacbio OR nanopore reads must be in a single fasta or fastq file with absolute path, can be gzipped
@@ -50,7 +48,7 @@ GRID_BATCH_SIZE=500000000
 #can increase this to 30 or 35 if your reads are short (N50<7000bp)
 LHE_COVERAGE=25
 #set to 0 (default) to do two passes of mega-reads for slower, but higher quality assembly, otherwise set to 1
-MEGA_READS_ONE_PASS=0
+MEGA_READS_ONE_PASS=1
 #this parameter is useful if you have too many Illumina jumping library mates. Typically set it to 60 for bacteria and 300 for the other organisms 
 LIMIT_JUMP_COVERAGE = 300
 #these are the additional parameters to Celera Assembler; do not worry about performance, number or processors or batch sizes -- these are computed automatically. 

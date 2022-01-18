@@ -11,9 +11,9 @@
 # or by entering `ec2metadata --instance-id` into your command prompt)
 # and write it in below next to `EC2ID`:
 
-EC2ID="i-00974d2cc6d562b14"
+EC2ID=""
 
-#ex. EC2ID=i-00974d2cc6d562b14
+#ex. EC2ID="i-00974d2cc6d562b14"
 
 # 3. If you want to terminate the EC2 instance after your command,
 # make `EC2STATE` below equal to 0, if you want it to just stop, 
@@ -32,23 +32,18 @@ EC2STATE=1
 #####################################################################
 
 #ex. run an abyss, soapdenovo, busco, or quast 
-echo 1
-echo 2
-echo 3
-echo 4
-echo 5
+
 
 #####################################################################
 # code end
-echo $EC2STATE
 
 # This line terminates or stops the EC2 instance
 if [ $EC2STATE = 0 ]; then
-	echo "EC2 instance terminating"
+        echo "EC2 instance terminating"
+	aws ec2 terminate-instances --instance-ids $EC2ID
+
 elif [ $EC2STATE = 1 ]; then
-	echo "EC2 instance stopping"
-#	aws ec2 stop-instance --instance-ids $EC2ID	
+        echo "EC2 instance stopping"
+        aws ec2 stop-instances --instance-ids $EC2ID
 fi
-
-
 

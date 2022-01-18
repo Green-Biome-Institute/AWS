@@ -30,8 +30,9 @@ EC2STATE=1
 
 # code start
 #####################################################################
+#ex. run an abyss, soapdenovo, busco, or quast here
 
-#ex. run an abyss, soapdenovo, busco, or quast 
+
 
 
 #####################################################################

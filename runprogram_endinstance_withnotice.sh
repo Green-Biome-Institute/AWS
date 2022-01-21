@@ -3,8 +3,7 @@
 # NOTE: this requires that the AWS account this script is being used in
 # has set up an origination number. To do thise go to 
 # https://console.aws.amazon.com/pinpoint/home?region=us-east-1#/sms-account-settings/requestLongCode
-# and set up a toll-free number that the SMS message can be sent
-# from. 
+# and set up a toll-free number that the SMS message can be sent from. 
 
 
 # This script is meant to run a series (or a single) bash command

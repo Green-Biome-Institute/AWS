@@ -37,7 +37,7 @@ EC2STATE=1
 # code you submitted below is fone running and when the EC2 instance
 # is stopping or terminating. 
 
-PHONE="+16504555766"
+PHONE="+16501234567"
  
 # 5. Enter the commands you want to run between the two lines below:
 
@@ -61,7 +61,5 @@ elif [ $EC2STATE = 1 ]; then
         aws sns publish --phone-number $PHONE --message 'Your program finished running! The EC2 instance is now stopping.'
         aws ec2 stop-instances --instance-ids $EC2ID   
 fi
-
-
 
                                                               66,0-1        Bot

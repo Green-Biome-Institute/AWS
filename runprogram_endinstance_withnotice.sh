@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# NOTE: this requires that the AWS account this script is being used in
+# has set up an origination number. To do thise go to 
+# https://console.aws.amazon.com/pinpoint/home?region=us-east-1#/sms-account-settings/requestLongCode
+# and set up a toll-free number that the SMS message can be sent
+# from. 
+
+
 # This script is meant to run a series (or a single) bash command
 # and then to stop or terminate the instance you are running.
 # In order to do this, please:
@@ -29,7 +36,7 @@ EC2STATE=1
 # 4. Enter your phone number (full-number including +1 for USA) if 
 # you would like a message sent to your phone telling you when the 
 # code you submitted below is fone running and when the EC2 instance
-# is stopping or terminating.
+# is stopping or terminating. 
 
 PHONE="+16504555766"
  

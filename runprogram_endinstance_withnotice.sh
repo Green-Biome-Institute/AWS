@@ -32,7 +32,7 @@ EC2STATE=1
 # is stopping or terminating.
 
 PHONE="+16504555766"
-
+ 
 # 5. Enter the commands you want to run between the two lines below:
 
 # code start

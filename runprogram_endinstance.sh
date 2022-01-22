@@ -30,12 +30,18 @@ EC2STATE=1
 
 # code start
 echo "Starting your code"
+if [ ! -d "logs" ]; then mkdir logs; fi
+echo $(date) > logs/startanalysis.txt
 #####################################################################
 
-#ex. run an abyss, soapdenovo, busco, or quast 
+
+#fastqc -t 16 GBI_Eovalifolium_S2_L001_R1_001.fastq.gz GBI_Eovalifolium_S2_L001_R2_001.fastq.gz
+abyss-pe name=eovalifolium-k31-012122 j=64 v=-v k=31 in="GBI_Eovalifolium_S2_L001_R1_001.fastq.gz GBI_Eovalifolium_S2_L001_R2_001.fastq.gz" | tee eovalifolium-k31-012122-stdout.log
+
 
 
 #####################################################################
+echo $(date) > logs/endanalysis.txt
 echo "Finished with your code"
 # code end
 

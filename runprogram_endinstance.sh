@@ -29,12 +29,14 @@ EC2STATE=1
 # 4. Enter the commands you want to run between the two lines below:
 
 # code start
+echo "Starting your code"
 #####################################################################
 
 #ex. run an abyss, soapdenovo, busco, or quast 
 
 
 #####################################################################
+echo "Finished with your code"
 # code end
 
 # These lines line terminates or stops the EC2 instance.

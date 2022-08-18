@@ -40,11 +40,11 @@ echo $(date) > $LOGDIR/startanalysis.txt
 #ABYSS ASSEMBLY
 
 # K = 121
-#echo 'k121_start' >> $LOGDIR/startanalysis.txt
-#echo $(date -u) >> $LOGDIR/startanalysis.txt
-#abyss-pe name=fpurshiana-k121-062222 j=64 v=-v k=121 in="GBI47-Fpurs_R1_trimmed.fq.gz GBI47-Fpurs_R2_trimmed.fq.gz GBI47-Fpurs_S102_L001_R1_001_val_1.fq.gz GBI47-Fpurs_S102_L001_R2_001_val_2.fq.gz" | tee fpurshiana-k121-062222-stdout.log
-#echo 'k121_end' >> $LOGDIR/startanalysis.txt
-#echo $(date -u) >> $LOGDIR/startanalysis.txt
+echo 'k121_start' >> $LOGDIR/startanalysis.txt
+echo $(date -u) >> $LOGDIR/startanalysis.txt
+abyss-pe name=fpurshiana-k121-062222 j=64 v=-v k=121 in="GBI47-Fpurs_R1_trimmed.fq.gz GBI47-Fpurs_R2_trimmed.fq.gz GBI47-Fpurs_S102_L001_R1_001_val_1.fq.gz GBI47-Fpurs_S102_L001_R2_001_val_2.fq.gz" | tee fpurshiana-k121-062222-stdout.log
+echo 'k121_end' >> $LOGDIR/startanalysis.txt
+echo $(date -u) >> $LOGDIR/startanalysis.txt
 
 # K = 125
 echo 'k125_start' >> $LOGDIR/startanalysis.txt

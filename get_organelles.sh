@@ -39,26 +39,26 @@ echo $(date) > $LOGDIR/timestamps.txt
 
 
 echo "start chloroplast assembly with embplant_pt seed" > $LOGDIR/timestamps.txt
-echo $(date) > $LOGDIR/timestamps.txt
+echo $(date) >> $LOGDIR/timestamps.txt
 
 get_organelle_from_reads.py -1 GBI-2_Cmolli_S78_R1_001_val_1.fq.gz -2 GBI-2_Cmolli_S78_R2_001_val_2.fq.gz  -t 8 -o CMollis_PT_embplantseed -F embplant_pt -R 15 -k 21,45,65,85,105
 
 echo "Finish chloroplast assembly with embplant_pt seed, start mitochondrial assembly with embplant_mt seed" > $LOGDIR/timestamps.txt
-echo $(date) > $LOGDIR/timestamps.txt
+echo $(date) >> $LOGDIR/timestamps.txt
 
 get_organelle_from_reads.py -1 GBI-2_Cmolli_S78_R1_001_val_1.fq.gz -2 GBI-2_Cmolli_S78_R2_001_val_2.fq.gz -t 8 -o CMollis_MT_embplantseed -F embplant_mt -R 30 -k 21,45,65,85,105
 
 echo "Finish mitochondrial assembly with embplant_mt seed, start chloroplast assembly with embplant_pt seed + cmollis fasta custom seed" > $LOGDIR/timestamps.txt
-echo $(date) > $LOGDIR/timestamps.txt
+echo $(date) >> $LOGDIR/timestamps.txt
 
 get_organelle_from_reads.py -1 GBI-2_Cmolli_S78_R1_001_val_1.fq.gz -2 GBI-2_Cmolli_S78_R2_001_val_2.fq.gz -t 8 -o CMollis_PT_customseed -F embplant_mt -R 15 -k 21,45,65,85,105 -s Clinariifolia_NADH_HQ384819.fasta
 
 echo "Finish chloroplast assembly with embplant_pt seed + cmollis fasta custom seed" > $LOGDIR/timestamps.txt
-echo $(date) > $LOGDIR/timestamps.txt
+echo $(date) >> $LOGDIR/timestamps.txt
 
 
 #####################################################################
-echo $(date) > $LOGDIR/timestamps.txt
+echo $(date) >> $LOGDIR/timestamps.txt
 echo "Finished with your code"
 
 # code end

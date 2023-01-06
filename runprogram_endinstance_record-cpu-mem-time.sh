@@ -44,8 +44,8 @@ count () {
 	# your code here:
 	#############################
 
-
-	abyss-pe name=aimbr-k133-010423 j=62 v=-v k=127 in="GBI28-Aimbr_S83_L001_R2_001_trimmed.fq.gz GBI28-Aimbr_S83_L001_R1_001_trimmed.fq.gz GBI28-Aimbr_S154_L002_R2_001_trimmed.fq.gz GBI28-Aimbr_S154_L002_R1_001_trimmed.fq.gz GBI28-Aimbr_R2_trimmed.fq.gz GBI28-Aimbr_R1_trimmed.fq.gz" | tee aimbr-k133-stdout.log
+	# for example, an abyss assembly:
+	abyss-pe name=aimbr-k133-010423 j=62 v=-v k=127 in="GBI28-Aimbr_S83_L001_R2_001_trimmed.fq.gz GBI28-Aimbr_S83_L001_R1_001_trimmed.fq.gz GBI28-Aimbr_S154_L002_R2_001_trimmed.fq.gz GBI28-Aimbr_S154_L002_R1_001_trimmed.fq.gz GBI28-Aimbr_R2_trimmed.fq.gz GBI28-Aimbr_R1_trimmed.fq.gz" | tee -a aimbr-k133-stdout.log
 
 
 	#############################

@@ -1,9 +1,13 @@
-# import requests
-# from bs4 import BeautifulSoup
-# import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+import csv
 
+# Define sets of genes for Eukaryota and Viridiplantae
 # EUKARYOTA
-genes = [
+eukaryota_genes = [
     "1001705at2759",
     "1003258at2759",
     "100698at2759",
@@ -262,8 +266,7 @@ genes = [
 ]
 
 # VIRIDIPLANTAE
-'''
-genes = [
+viridiplantae_genes = [
     "101241at33090",
     "101701at33090",
     "102307at33090",
@@ -689,75 +692,51 @@ genes = [
     "96953at33090",
     "97593at33090",
     "9849at33090"]
-'''
 
-# for gene in genes:
-#     URL = "https://v10.orthodb.org/?query=" + gene
-#     print(URL)
-#     page = requests.get(URL)
-#     time.sleep(5)
-#     # print(page.tex/t)
-#     soup = BeautifulSoup(page.text, 'html.parser')
-#     results = soup.find(id="content")
-#     print(results)
-#     # print(soup)
-#     # result = soup.find('div', class_='s-group-header-title').get_text(strip=True)
-#     # print(gene, result)
+for gene_set, set_name in [eukaryota_genes, viridiplantae_genes], ['eukaryota', 'viridiplantae']:   
 
+    # Initialize a dictionary to store gene information
+    gene_dict = {}
 
+    # Iterate through each gene in the gene set
+    for gene in gene_set:
+        url = "https://v10.orthodb.org/?query=" + gene
 
-# # URL = "https://v10.orthodb.org/?query=1407446at2759"
-# # page = requests.get(URL)
+        # Create a new instance of the Firefox driver
+        driver = webdriver.Firefox()
 
-# # print(page.text)
+        # Open the webpage
+        driver.get(url)
+        time.sleep(10)
 
+        try:
+            # Wait for the content to load
+            content_element = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "s-group-header-title"))
+            )
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
-import csv
+            # Extract the text content of the element
+            content_text = content_element.text.strip()
 
-# url = 'https://v10.orthodb.org/?query=101241at33090'
-gene_dict = {}
+            gene_dict[gene] = (url, content_text)
+            # print(content_text)
+            print(gene_dict[gene])
 
-for gene in genes:
-    url = "https://v10.orthodb.org/?query=" + gene
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            gene_dict[gene] = (url, "error")
+        finally:
+            # Close the browser window
+            driver.quit()
 
-    # Create a new instance of the Firefox driver (you can use other drivers like Chrome as well)
-    driver = webdriver.Firefox()
+    # Sort genes based on their numerical part
+    sorted_genes = sorted(gene_dict.items(), key=lambda x: int(x[0].split("at")[0]))
 
-    # Open the webpage
-    driver.get(url)
-    time.sleep(10)
+    print(sorted_genes)
 
-    try:
-        # Wait for the content to load
-        content_element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "s-group-header-title"))
-        )
-
-        # Extract the text content of the element
-        content_text = content_element.text.strip()
-
-        gene_dict[gene] = (url, content_text)
-        # print(content_text)
-        print(gene_dict[gene])
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        gene_dict[gene] = (url, "error")
-    finally:
-        # Close the browser window
-        driver.quit()
-
-sorted_genes = sorted(gene_dict.items(), key=lambda x: int(x[0].split("at")[0]))
-
-print(sorted_genes)
-
-output_filename = 'eukaryota_odb10_genenames.csv'
-with open(output_filename, "w", newline="", encoding="utf8") as csv_file:
-    csv_writer = csv.writer(csv_file)
-    for tmp_url, gene_name in sorted_genes:
-        csv_writer.writerow([gene_name[0], gene_name[1]])
+    # Save the sorted genes into a CSV file
+    output_filename = set_name+'_odb10_genenames.csv'
+    with open(output_filename, "w", newline="", encoding="utf8") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        for tmp_url, gene_name in sorted_genes:
+            csv_writer.writerow([gene_name[0], gene_name[1]])

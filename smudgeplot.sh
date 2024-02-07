@@ -56,3 +56,11 @@ current_datetime=$(date)
 current_path=$(pwd)/
 echo $current_path >> $logfile
 echo "Current date and time: $current_datetime" >> $logfile
+
+/home/ubuntu/KMC/bin/smudge_pairs kmcdb_L"$L"_U"$U" kmcdb_L"$L"_U"$U"_coverages.tsv kmcdb_L"$L"_U"$U"_pairs.tsv > kmcdb_L"$L"_U"$U"_familysizes.tsv | tee -a $logfile
+current_datetime=$(date)
+echo "Current date and time: $current_datetime" >> $logfile
+
+smudgeplot.py plot kmcdb_L"$L"_U"$U"_coverages.tsv | tee -a $logfile
+current_datetime=$(date)
+echo "Current date and time: $current_datetime" >> $logfile

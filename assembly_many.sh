@@ -27,16 +27,16 @@ for plant_name in "${plant_names[@]}"; do
         cd "$plant_path/K$k"
         echo "Processing K$k for $plant_name" >> "$logfile"
 
-        # Collect fastq.gz files and prepare input
+        # prepare input
         readarray -t fq_files < <(find "${plant_path}/data" -name '*.fq.gz')
         input_files=$(printf "%s " "${fq_files[@]}")
         input_files="${input_files% }"  # Trim the trailing space
 
-        # Run abyss-pe with the collected files
+        # Run abyss-pe
         if [ ! -z "$input_files" ]; then
             abyss-pe name="$plant_name-k$k-abyss-$date-B110G-r5x4l-t$j" j=$j v=-v B=110G k=$k in="$input_files" | tee -a "$plant_name-k$k-abyss-$date-B110G-r5x4l-t$j.log"
             
-            # Check for scaffold files
+            # If success (meaning there are scaffold files), run busco on eukaryota and viridiplantae dbs
             scaffold=$(ls *-scaffolds.fa)
             if [ -f "$scaffold" ]; then
                 busco -i "$scaffold" -l eukaryota_odb10 -o "${scaffold}-busco-eukaryota" -c $j -m genome | tee -a "$logfile"
